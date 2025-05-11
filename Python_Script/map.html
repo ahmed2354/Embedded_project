@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Real-Time GPS Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .info-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div class="info-panel">
+        <h3>GPS Tracker</h3>
+        <div>Points: <span id="point-count">0</span></div>
+        <div>Last Update: <span id="last-update">Never</span></div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <script>
+        const map = L.map('map').setView([30.0444, 31.2357], 100);  // Default view, adjust as needed
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const markers = L.markerClusterGroup();  // Group for managing markers
+        map.addLayer(markers);
+
+        let lastPosition = null;
+        let polyline = null;
+        let lastCount = 0;
+
+        function updateMap() {
+            const script = document.createElement('script');
+            script.src = 'where.js?' + Date.now();  // Prevent caching of old JS
+            script.onload = () => {
+                try {
+                    const points = getAddressPoints(); // Function from where.js to get the GPS points
+                    const newPoints = points.slice(lastCount); // Get only new points since last update
+
+                    newPoints.forEach(point => {
+                        if (point.length >= 2 && Number.isFinite(point[0]) && Number.isFinite(point[1])) {
+                            const marker = L.marker(point)
+                                .bindPopup(`<b>Position</b><br>Lat: ${point[0].toFixed(6)}<br>Lng: ${point[1].toFixed(6)}`);
+                            markers.addLayer(marker);  // Add marker to the map
+
+                            if (lastPosition) {
+                                if (!polyline) {
+                                    polyline = L.polyline([lastPosition, point], { color: 'green' }).addTo(map);
+                                } else {
+                                    polyline.addLatLng(point);  // Add to existing polyline
+                                }
+                            }
+                            lastPosition = point;  // Update the last position
+                        }
+                    });
+
+                    lastCount = points.length;  // Update the last processed point count
+
+                    // Update info panel
+                    document.getElementById('point-count').textContent = points.length;
+                    
+
+                    // Adjust map view to the last point
+                    if (newPoints.length > 0) {
+                        map.setView(newPoints[newPoints.length - 1], map.getZoom());
+                    }
+                } catch (e) {
+                    console.error("Error parsing address points:", e);
+                }
+            };
+            script.onerror = () => {
+                console.error("Failed to load where.js");
+            };
+            document.head.appendChild(script);
+        }
+
+        // Initial map update and continuous updates every 1 second
+        updateMap();
+        setInterval(updateMap, 1000);  // Update the map every second
+    </script>
+</body>
+
+</html>
