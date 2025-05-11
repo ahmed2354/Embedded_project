@@ -1,5 +1,5 @@
 # Introduction To Embedded Systems(CSE211s) project - GPS Tracking System using TIVA C - ARM Cortex M processor
-# Project overview 
+# 📜 Project overview 
 The goal of this project is to develop an embedded system using C programming that gathers real-time positional coordinates while a microcontroller (using TM4C123GH6PM LaunchPad) is in motion, and display 
 location information on an attached computer or an LCD.
 
