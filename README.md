@@ -11,7 +11,7 @@
 
 </br>
 
-## This project is Done by Group 28 Of CSE and ECE departements at Faculty of Engineering Ain Shams Univeristy. </br>
+## This project is Done by Group # Of CSE and ECE departements at Faculty of Engineering Ain Shams Univeristy. </br>
 ## Members: </br>
 Ahmed Mahmoud Esaam Eldin 2200640 </br>
 Omar Mohamed Mahmoud Eid  2200284 </br>
