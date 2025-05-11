@@ -1,6 +1,7 @@
 📌 GPS Real-Time Tracking System – Logic Breakdown
 🧠 Overall Goal
 Display live GPS coordinates on a web-based map using Leaflet and update them in real-time from a GPS device.
+
 The mapping proccess works as following:
 
 1- The python code 'serial_read.py' receives the coordinates from the microcontroller.
