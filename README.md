@@ -7,6 +7,12 @@ location information on an attached computer or an LCD.
 * Video of the Project [link](https://drive.google.com/file/d/1dggrWpeiZJEHvIAa_n1tSXCZSzD64H-m/view?usp=drivesdk)
 </br>
 
+## BONUS FEATURES
+* LCD screen
+* Buzzer
+* Working autonomously with a battery
+*	Python script 
+</br> 
 ## The project is implemented using the following hardware:
 * Tiva-c
 * GPS module (NEO-6M)  
