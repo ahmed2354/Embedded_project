@@ -12,7 +12,7 @@ location information on an attached computer or an LCD.
 * Buzzer
 * Working autonomously with a battery
 *	Python script 
-</br> 
+
 ## The project is implemented using the following hardware:
 * Tiva-c
 * GPS module (NEO-6M)  
