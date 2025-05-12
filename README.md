@@ -11,7 +11,7 @@ location information on an attached computer or an LCD.
 * LCD screen
 * Buzzer
 * Working autonomously with a battery
-*	Python script 
+*	Python script for drawing trajectory 
 
 ## The project is implemented using the following hardware:
 * Tiva-c
