@@ -6,7 +6,6 @@ location information on an attached computer or an LCD.
 * For More details [check the report]()
 * Video of the Project [link](https://drive.google.com/file/d/1dggrWpeiZJEHvIAa_n1tSXCZSzD64H-m/view?usp=drivesdk)
 </br>
-
 ## BONUS FEATURES
 * LCD screen
 * Buzzer
