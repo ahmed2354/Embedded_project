@@ -3,7 +3,7 @@
 The goal of this project is to develop an embedded system using C programming that gathers real-time positional coordinates while a microcontroller (using TM4C123GH6PM LaunchPad) is in motion, and display 
 location information on an attached computer or an LCD.
 
-* For More details [check the report]()
+* For More details [check the report](https://drive.google.com/file/d/1dggrWpeiZJEHvIAa_n1tSXCZSzD64H-m/view?usp=drivesdk)
 * Video of the Project [link]()
 </br>
 
