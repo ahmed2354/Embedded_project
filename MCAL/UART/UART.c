@@ -15,10 +15,10 @@ void UART0_Init(void)
     UART0_FBRD_R = 11; 
     UART0_LCRH_R = 0x00000070; // 8 bit, no parity bits, one stop, FIFOS
     UART0_CTL_R |= 0x00000301; // enable UART, TXE, RXE
-    GPIO_PORTA_AFSEL_R |= 0x03; // enable alt funct on PA1-0
+    GPIO_PORTA_AFSEL_R |= 0x03; // enable alt funct on PA0-1
     GPIO_PORTA_DEN_R |= 0x03; // configure PA1-0 as UART0
     GPIO_PORTA_PCTL_R = (GPIO_PORTA_PCTL_R & 0xFFFFFF00) + 0x00000011;
-    GPIO_PORTA_AMSEL_R &= ~0x03; // disable analog on PA1-0
+    GPIO_PORTA_AMSEL_R &= ~0x03; // disable analog on PA0-1
 }
 
 
@@ -37,10 +37,10 @@ void UART2_Init(void)
     UART2_FBRD_R = 11; 
     UART2_LCRH_R = 0x00000070; // 8 bit, no parity bits, one stop, FIFOS
     UART2_CTL_R |= 0x00000301; // enable UART, TXE, RXE
-    GPIO_PORTD_AFSEL_R |= 0xC0; // enable alt funct on PA1-0
-    GPIO_PORTD_DEN_R |= 0xC0; // configure PA1-0 as UART0
+    GPIO_PORTD_AFSEL_R |= 0xC0; // enable alt funct on PD6-7
+    GPIO_PORTD_DEN_R |= 0xC0; // configure PD6-7 as UART2
     GPIO_PORTD_PCTL_R = (GPIO_PORTD_PCTL_R & 0x00FFFFFF) + 0x11000000;
-    GPIO_PORTD_AMSEL_R &= ~0xC0; // disable analog on PA1-0
+    GPIO_PORTD_AMSEL_R &= ~0xC0; // disable analog on PD6-7
 }
 
 
